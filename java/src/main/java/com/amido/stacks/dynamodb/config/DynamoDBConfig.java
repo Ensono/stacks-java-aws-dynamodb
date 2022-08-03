@@ -2,7 +2,7 @@ package com.amido.stacks.dynamodb.config;
 
 import static com.amazonaws.util.StringUtils.isNullOrEmpty;
 
-import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -21,20 +21,12 @@ public class DynamoDBConfig {
   @Value("${amazon.dynamodb.signingRegion}")
   private String signingRegion;
 
-  /*
-  @Value("${amazon.aws.accesskey}")
-  private String awsAccessKey;
-
-  @Value("${amazon.aws.secretkey}")
-  private String awsSecretKey;
-   */
-
   @Bean
   public AmazonDynamoDB amazonDynamoDB() {
 
     AmazonDynamoDBClientBuilder clientBuilder =
         AmazonDynamoDBClientBuilder.standard()
-            .withCredentials(new EnvironmentVariableCredentialsProvider());
+            .withCredentials(new DefaultAWSCredentialsProviderChain());
 
     if (!isNullOrEmpty(dynamoDbEndpoint)) {
       clientBuilder.withEndpointConfiguration(
@@ -43,12 +35,4 @@ public class DynamoDBConfig {
 
     return clientBuilder.build();
   }
-
-  /*
-  @Bean
-  public AWSCredentialsProvider awsCredentials() {
-
-    return new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey));
-  }
-   */
 }
