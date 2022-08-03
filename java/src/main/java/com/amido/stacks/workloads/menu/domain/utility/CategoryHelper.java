@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author ArathyKrishna
- */
 public class CategoryHelper {
+
+  private CategoryHelper() {
+    // Utility class
+  }
+
   public static List<Category> createCategories(int count) {
     List<Category> categoryList = new ArrayList<>();
     for (int i = 0; i < count; i++) {

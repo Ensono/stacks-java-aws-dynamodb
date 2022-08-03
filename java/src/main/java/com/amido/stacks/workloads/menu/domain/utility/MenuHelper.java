@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * @author ArathyKrishna
- */
 public class MenuHelper {
+
+  private MenuHelper() {
+    // Utility class
+  }
 
   public static List<Menu> createMenus(int count) {
     List<Menu> menuList = new ArrayList<>();

@@ -1,41 +1,54 @@
 package com.amido.stacks.dynamodb.config;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
+import static com.amazonaws.util.StringUtils.isNullOrEmpty;
+
+import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
+import com.amazonaws.client.builder.AwsClientBuilder.EndpointConfiguration;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.StringUtils;
 
 @Configuration
 @EnableDynamoDBRepositories(basePackages = "com.amido.stacks.workloads.menu.repository")
 public class DynamoDBConfig {
 
   @Value("${amazon.dynamodb.endpoint}")
-  private String amazonDynamoDBEndpoint;
+  private String dynamoDbEndpoint;
 
+  @Value("${amazon.dynamodb.signingRegion}")
+  private String signingRegion;
+
+  /*
   @Value("${amazon.aws.accesskey}")
-  private String amazonAWSAccessKey;
+  private String awsAccessKey;
 
   @Value("${amazon.aws.secretkey}")
-  private String amazonAWSSecretKey;
+  private String awsSecretKey;
+   */
 
   @Bean
   public AmazonDynamoDB amazonDynamoDB() {
-    AmazonDynamoDB amazonDynamoDB = new AmazonDynamoDBClient(amazonAWSCredentials());
 
-    if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
-      amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
+    AmazonDynamoDBClientBuilder clientBuilder =
+        AmazonDynamoDBClientBuilder.standard()
+            .withCredentials(new EnvironmentVariableCredentialsProvider());
+
+    if (!isNullOrEmpty(dynamoDbEndpoint)) {
+      clientBuilder.withEndpointConfiguration(
+          new EndpointConfiguration(dynamoDbEndpoint, signingRegion));
     }
 
-    return amazonDynamoDB;
+    return clientBuilder.build();
   }
 
+  /*
   @Bean
-  public AWSCredentials amazonAWSCredentials() {
-    return new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey);
+  public AWSCredentialsProvider awsCredentials() {
+
+    return new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey));
   }
+   */
 }
