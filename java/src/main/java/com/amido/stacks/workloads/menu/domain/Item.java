@@ -1,5 +1,6 @@
 package com.amido.stacks.workloads.menu.domain;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@DynamoDBDocument
 public class Item {
 
   private String id;
