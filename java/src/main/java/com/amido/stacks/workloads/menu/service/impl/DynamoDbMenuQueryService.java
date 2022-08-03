@@ -1,5 +1,7 @@
 package com.amido.stacks.workloads.menu.service.impl;
 
+import static org.springframework.data.domain.PageRequest.of;
+
 import com.amido.stacks.workloads.menu.domain.Menu;
 import com.amido.stacks.workloads.menu.repository.MenuRepository;
 import com.amido.stacks.workloads.menu.service.MenuQueryService;
@@ -8,9 +10,7 @@ import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,8 +29,7 @@ public class DynamoDbMenuQueryService implements MenuQueryService {
   @Override
   public List<Menu> findAll(int pageNumber, int pageSize) {
 
-    Page<Menu> page =
-        menuRepository.findAll(PageRequest.of(0, pageSize, Sort.by(Sort.Direction.ASC, NAME)));
+    Page<Menu> page = menuRepository.findAll(of(0, pageSize));
 
     // This is specific and needed due to the way in which CosmosDB handles pagination
     // using a continuationToken and a limitation in the Swagger Specification.
@@ -48,8 +47,7 @@ public class DynamoDbMenuQueryService implements MenuQueryService {
   public List<Menu> findAllByRestaurantId(UUID restaurantId, Integer pageSize, Integer pageNumber) {
 
     return menuRepository
-        .findAllByRestaurantId(
-            restaurantId.toString(), PageRequest.of(0, pageSize, Sort.by(Sort.Direction.ASC, NAME)))
+        .findAllByRestaurantId(restaurantId.toString(), of(0, pageSize))
         .getContent();
   }
 
@@ -57,10 +55,7 @@ public class DynamoDbMenuQueryService implements MenuQueryService {
   public List<Menu> findAllByNameContaining(
       String searchTerm, Integer pageSize, Integer pageNumber) {
 
-    return menuRepository
-        .findAllByNameContaining(
-            searchTerm, PageRequest.of(0, pageSize, Sort.by(Sort.Direction.ASC, NAME)))
-        .getContent();
+    return menuRepository.findAllByNameContaining(searchTerm, of(0, pageSize)).getContent();
   }
 
   @Override
@@ -69,9 +64,7 @@ public class DynamoDbMenuQueryService implements MenuQueryService {
 
     return menuRepository
         .findAllByRestaurantIdAndNameContaining(
-            restaurantId.toString(),
-            searchTerm,
-            PageRequest.of(0, pageSize, Sort.by(Sort.Direction.ASC, NAME)))
+            restaurantId.toString(), searchTerm, of(0, pageSize))
         .getContent();
   }
 }
