@@ -18,6 +18,8 @@
     <stacks.core.commons.version>1.0.0</stacks.core.commons.version>
 
     <spring.data.dynamodb.version>5.2.5</spring.data.dynamodb.version>
+    <aws-java-sdk-bom.version>1.11.1000</aws-java-sdk-bom.version>
+    <aws-xray-recorder-sdk-bom.version>2.11.0</aws-xray-recorder-sdk-bom.version>
   </properties>
 
   <dependencies>
@@ -30,6 +32,11 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-dynamodb</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-xray-recorder-sdk-aws-sdk-instrumentor</artifactId>
     </dependency>
 
     <dependency>
@@ -65,7 +72,15 @@
       <dependency>
         <groupId>com.amazonaws</groupId>
         <artifactId>aws-java-sdk-bom</artifactId>
-        <version>1.11.1000</version>
+        <version>${aws-java-sdk-bom.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-xray-recorder-sdk-bom</artifactId>
+        <version>${aws-xray-recorder-sdk-bom.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
