@@ -22,4 +22,30 @@
   <mirrors>
   </mirrors>
 
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <snapshots/>
+          <id>snapshots</id>
+          <name>default-maven-virtual</name>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <id>releases</id>
+          <name>default-maven-staging</name>
+          <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+      </repositories>
+      <id>nexus</id>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+
 </settings>
