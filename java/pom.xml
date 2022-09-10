@@ -7,7 +7,7 @@
   <parent>
     <groupId>com.amido.stacks.modules</groupId>
     <artifactId>stacks-modules-parent</artifactId>
-    <version>2.0.1-RELEASE</version>
+    <version>2.0.6-RELEASE</version>
   </parent>
 
   <artifactId>stacks-aws-dynamodb</artifactId>
@@ -15,29 +15,12 @@
   <description>Core AWS DynamoDB components for the Java Stacks solution</description>
 
   <properties>
-    <stacks.core.commons.version>1.0.0</stacks.core.commons.version>
-
+    <stacks.core.commons.version>2.0.5</stacks.core.commons.version>
     <spring.data.dynamodb.version>5.2.5</spring.data.dynamodb.version>
-    <aws-java-sdk-bom.version>1.11.1000</aws-java-sdk-bom.version>
-    <aws-xray-recorder-sdk-bom.version>2.11.0</aws-xray-recorder-sdk-bom.version>
+    <stacks.aws.version>1.0.2</stacks.aws.version>
   </properties>
 
   <dependencies>
-
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-java-sdk-core</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-java-sdk-dynamodb</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-xray-recorder-sdk-aws-sdk-instrumentor</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>io.github.boostchicken</groupId>
@@ -49,6 +32,12 @@
       <groupId>com.amido.stacks.modules</groupId>
       <artifactId>stacks-core-commons</artifactId>
       <version>${stacks.core.commons.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.amido.stacks.modules</groupId>
+      <artifactId>stacks-aws</artifactId>
+      <version>${stacks.aws.version}</version>
     </dependency>
 
     <!-- https://snyk.io/vuln/SNYK-JAVA-IONETTY-1584064 -->
@@ -67,24 +56,5 @@
 
   </dependencies>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.amazonaws</groupId>
-        <artifactId>aws-java-sdk-bom</artifactId>
-        <version>${aws-java-sdk-bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>com.amazonaws</groupId>
-        <artifactId>aws-xray-recorder-sdk-bom</artifactId>
-        <version>${aws-xray-recorder-sdk-bom.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
 </project>
