@@ -10,8 +10,9 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.amido.stacks.workloads.menu.domain.utility.*;
+import com.amido.stacks.dynamodb.repository.StacksDynamoDbRepository;
 import com.amido.stacks.workloads.menu.domain.Menu;
-import com.amido.stacks.workloads.menu.domain.utility.MenuHelper;
 import com.amido.stacks.workloads.menu.service.MenuQueryService;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ class DynamoDbMenuQueryServiceTest {
   @Test
   void findById() {
 
-    MenuRepository repository = mock(MenuRepository.class);
+    StacksDynamoDbRepository repository = mock(StacksDynamoDbRepository.class);
     MenuQueryService menuQueryServiceImpl = new DynamoDbMenuQueryService(repository);
 
     Menu menu = MenuHelper.createMenu(1);
@@ -45,7 +46,7 @@ class DynamoDbMenuQueryServiceTest {
   @Test
   void findAll() {
 
-    MenuRepository repository = mock(MenuRepository.class);
+    StacksDynamoDbRepository repository = mock(StacksDynamoDbRepository.class);
     MenuQueryService menuQueryServiceImpl = new DynamoDbMenuQueryService(repository);
 
     Pageable pageable = mock(Pageable.class);
@@ -68,7 +69,7 @@ class DynamoDbMenuQueryServiceTest {
   @Test
   void findAllByRestaurantId() {
 
-    MenuRepository repository = mock(MenuRepository.class);
+    StacksDynamoDbRepository repository = mock(StacksDynamoDbRepository.class);
     MenuQueryService menuQueryServiceImpl = new DynamoDbMenuQueryService(repository);
 
     Pageable pageable = mock(Pageable.class);
@@ -87,7 +88,7 @@ class DynamoDbMenuQueryServiceTest {
   @Test
   void findAllByNameContaining() {
 
-    MenuRepository repository = mock(MenuRepository.class);
+    StacksDynamoDbRepository repository = mock(StacksDynamoDbRepository.class);
     MenuQueryService menuQueryServiceImpl = new DynamoDbMenuQueryService(repository);
 
     Pageable pageable = mock(Pageable.class);
@@ -106,7 +107,7 @@ class DynamoDbMenuQueryServiceTest {
   @Test
   void findAllByRestaurantIdAndNameContaining() {
 
-    MenuRepository repository = mock(MenuRepository.class);
+    StacksDynamoDbRepository repository = mock(StacksDynamoDbRepository.class);
     MenuQueryService menuQueryServiceImpl = new DynamoDbMenuQueryService(repository);
 
     Pageable pageable = mock(Pageable.class);

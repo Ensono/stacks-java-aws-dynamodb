@@ -2,6 +2,7 @@ package com.amido.stacks.workloads.menu.service.impl;
 
 import static org.springframework.data.domain.PageRequest.of;
 
+import com.amido.stacks.dynamodb.repository.StacksDynamoDbRepository;
 import com.amido.stacks.workloads.menu.domain.Menu;
 import com.amido.stacks.workloads.menu.service.MenuQueryService;
 import java.util.List;
@@ -18,7 +19,7 @@ public class DynamoDbMenuQueryService implements MenuQueryService {
 
   private static final String NAME = "name";
 
-  private final MenuRepository menuRepository;
+  private final StacksDynamoDbRepository menuRepository;
 
   @Override
   public Optional<Menu> findById(UUID id) {
