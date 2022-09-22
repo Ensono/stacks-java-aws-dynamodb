@@ -2,7 +2,7 @@ package com.amido.stacks.workloads.menu.service.impl;
 
 import static org.springframework.data.domain.PageRequest.of;
 
-import com.amido.stacks.dynamodb.repository.StacksDynamoDbRepository;
+import com.amido.stacks.workloads.menu.repository.StacksDynamoDbRepository;
 import com.amido.stacks.workloads.menu.domain.Menu;
 import com.amido.stacks.workloads.menu.service.MenuQueryService;
 import java.util.List;

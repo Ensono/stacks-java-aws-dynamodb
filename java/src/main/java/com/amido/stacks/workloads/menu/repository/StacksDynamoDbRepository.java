@@ -1,15 +1,21 @@
-package com.amido.stacks.dynamodb.repository;
+package com.amido.stacks.workloads.menu.repository;
 
 import com.amido.stacks.core.repository.StacksPersistence;
 import com.amido.stacks.workloads.menu.domain.Menu;
+import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
+import org.socialsignin.spring.data.dynamodb.repository.EnableScanCount;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+@EnableScan
+@EnableScanCount
 @Repository
 public interface StacksDynamoDbRepository<T>
     extends StacksPersistence<T>, PagingAndSortingRepository<T, String> {
+
+  Menu save(Menu menu);
 
   /**
    * Query is constructed OOTB- out of the box, executed and results are fetched based param

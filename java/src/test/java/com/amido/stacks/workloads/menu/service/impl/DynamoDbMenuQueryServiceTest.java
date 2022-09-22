@@ -11,7 +11,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import com.amido.stacks.workloads.menu.domain.utility.*;
-import com.amido.stacks.dynamodb.repository.StacksDynamoDbRepository;
+import com.amido.stacks.workloads.menu.repository.StacksDynamoDbRepository;
 import com.amido.stacks.workloads.menu.domain.Menu;
 import com.amido.stacks.workloads.menu.service.MenuQueryService;
 import java.util.List;
