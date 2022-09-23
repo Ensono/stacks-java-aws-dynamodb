@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @EnableScan
 @EnableScanCount
 @Repository
-public interface MenuRepository extends StacksDynamoDbRepository<Menu> {
+public interface MenuRepositoryDynamoDb extends StacksDynamoDbRepository<Menu> {
 
   @Override
   Menu save(Menu menu);
