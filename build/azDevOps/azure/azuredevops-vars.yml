@@ -116,9 +116,9 @@ variables:
 
   # Test
   - name: functional_test
-    value: false
+    value: true
   - name: coverage_test
-    value: false
+    value: true
 
   # Vulnerability Scan
   - name: vulnerability_scan
