@@ -11,10 +11,7 @@ import org.springframework.stereotype.Repository;
 @EnableScan
 @EnableScanCount
 @Repository
-public interface MenuRepositoryDynamoDb extends StacksDynamoDbRepository<Menu> {
-
-  @Override
-  Menu save(Menu menu);
+public interface MenuRepository extends StacksDynamoDbRepository<Menu> {
 
   /**
    * Query is constructed OOTB- out of the box, executed and results are fetched based param
