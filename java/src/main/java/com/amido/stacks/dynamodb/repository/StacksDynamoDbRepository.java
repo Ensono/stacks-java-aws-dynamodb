@@ -7,4 +7,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 @NoRepositoryBean
 public interface StacksDynamoDbRepository<T>
-    extends StacksPersistence<T>, CrudRepository<T, String>, PagingAndSortingRepository<T, String> {}
+    extends StacksPersistence<T>,
+        CrudRepository<T, String>,
+        PagingAndSortingRepository<T, String> {}
