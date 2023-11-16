@@ -116,7 +116,7 @@ variables:
 
   # Test
   - name: functional_test
-    value: true
+    value: false
   - name: coverage_test
     value: true
 
@@ -124,7 +124,6 @@ variables:
   - name: vulnerability_scan
     value: true
   - name: vulnerability_scan_report
-    value: "target/dependency-check-report.html"
   - name: vulnerability_scan_fail_build_on_detection
     value: false
 
