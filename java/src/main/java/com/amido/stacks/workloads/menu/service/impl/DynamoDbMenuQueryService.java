@@ -3,7 +3,7 @@ package com.amido.stacks.workloads.menu.service.impl;
 import static org.springframework.data.domain.PageRequest.of;
 
 import com.amido.stacks.workloads.menu.domain.Menu;
-import com.amido.stacks.workloads.menu.repository.MenuRepositoryDynamoDb;
+import com.amido.stacks.workloads.menu.repository.MenuRepository;
 import com.amido.stacks.workloads.menu.service.MenuQueryService;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +19,7 @@ public class DynamoDbMenuQueryService implements MenuQueryService {
 
   private static final String NAME = "name";
 
-  private final MenuRepositoryDynamoDb menuRepository;
+  private final MenuRepository menuRepository;
 
   @Override
   public Optional<Menu> findById(UUID id) {
